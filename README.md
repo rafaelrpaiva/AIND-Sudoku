@@ -2,25 +2,29 @@
 ## Introductory Project: Diagonal Sudoku Solver
 
 # Question 1 (Naked Twins)
-Q: How do we use constraint propagation to solve the naked twins problem?  
+Q: How do we use constraint propagation to solve the naked twins problem?
 
 There are two main steps for solving the naked twins problem:
 * First is iterating through a unit and finding the number of boxes each possible value has.
 * Second is iterating each possible value and finding if there is a naked twins, based on the size and the values
 assigned.
 
-Finding a naked twin scenario, Constant Propagation consists of assigning a set for the twins, and running the
-algorithm with this new update picture. For instance:
+The definition of Constraint Propagation, presented in Udacity Nanodegree Program "Artifical Intelligence" is "using 
+local constraints in a space (in the case of Sudoku, the constraints of each square) to dramatically reduce the search 
+space" and thus reducing the number of possibilities.
+
+The naked twin scenario is a clear case of Constraint Propagation, since when twins are found we can propagate this 
+constraint to both peers and reduce the search space in the algorithm with this new updated picture. For instance:
 * if we find __23__ naked twin twice, we can assign in one box _2_ and _3_ in another, reducing the possible paths to
-investigate.
+investigate and propagating this constraint to its peers, eliminating both numbers.
 * if we find _378_ naked twin twice, we try out using _3_ and _7_, _3_ and _8_ and finally _7_ and _8_.
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
 
-For solving diagonal sudoku problem, the process is exactly the same than the regular sudoku. The difference is the
-existance of a third unit group, the diagonals, which affects the units in general and also te peer.
-Redfined this, we can apply constant propagation affecting the diagonals to reduce the possibilities as well.
+For solving diagonal Sudoku problem, the process is exactly the same in the regular sudoku. The difference is the
+existence of a third unit group, the diagonals, which affects the units in general and also the peers.
+Redifining this, we can apply constant propagation using the diagonals to reduce the possibilities as well.
 
 ### Install
 
