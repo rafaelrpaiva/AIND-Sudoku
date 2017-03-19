@@ -66,6 +66,7 @@ def naked_twins(values):
         for each_unit in nt_units:
             # Eliminate the naked twins as possibilities
             for item in each_unit:
+                # removing the digit from naked twin in the units
                 if item != n[0] and item != n[1]:
                     values[item] = values[item].replace(values[n[0]][0], '')
                     assign_value(values, item, values[item])  # to visualize the data
@@ -125,7 +126,9 @@ def eliminate(values):
         Returns:
             Resulting Sudoku in dictionary form after eliminating values.
     """
+    # Step 1: finding the boxes that were defined to eliminate the next
     solved_values = [box for box in values.keys() if len(values[box]) == 1]
+    # Step 2: cleaning the solved values in their peers
     for box in solved_values:
         number_assigned = values[box]
         for peer in diag_peers[box]:
